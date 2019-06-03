@@ -1,51 +1,39 @@
 package net.codejava.struts;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+ 
 import com.opensymphony.xwork2.ActionSupport;
-
-public class SumAction extends ActionSupport {
-
-	/**
-	* 
-	*/
-	private static final long serialVersionUID = 2430519018757942160L;
-	private int x;
-	private int y;
-	private int sum;
-
-	/**
-	 * The action method
+ 
+/**
+ * @author Jordi.Artal
+ * for tutorial 'how-to-handle-exceptions-in-struts2'
+ *
+ */
+public class SumAction extends ActionSupport implements ServletRequestAware {
+    /**
 	 * 
-	 * @return name of view
 	 */
-	public String calculate() {
-		sum = x + y;
-		return SUCCESS;
-	}
-
-	// setters and getters for x, y, and sum:
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public int getSum() {
-		return sum;
-	}
-
-	public void setSum(int sum) {
-		this.sum = sum;
-	}
-
+	private static final long serialVersionUID = 2636356263822121074L;
+	private HttpServletRequest request;
+    private int sum;
+ 
+    public int getSum() {
+        return sum;
+    }
+ 
+    @Override
+    public String execute() {
+        // an exception might be thrown here if x/y is not a number
+        int x = Integer.parseInt(request.getParameter("x"));
+        int y = Integer.parseInt(request.getParameter("y"));
+        sum = x + y;
+        return SUCCESS;
+    }
+ 
+    @Override
+    public void setServletRequest(HttpServletRequest request) {
+        this.request = request;
+    }
 }
