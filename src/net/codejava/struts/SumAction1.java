@@ -2,7 +2,7 @@ package net.codejava.struts;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class SumActionOld extends ActionSupport {
+public class SumAction1 extends ActionSupport {
 
 	/**
 	* 
