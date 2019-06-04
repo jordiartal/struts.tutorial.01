@@ -33,6 +33,10 @@
 		<action name="sum" class="net.codejava.struts.SumAction">
 			<result name="success">/Sum.jsp</result>
 		</action>
+		
+		<action name="login" class="net.codejava.struts.LoginAction">
+			<result name="success">/login-success.html</result>
+		</action>
 
 		<action name="connectDB"
 			class="net.codejava.struts.ConnectDBAction">
